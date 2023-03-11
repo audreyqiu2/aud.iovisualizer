@@ -9,6 +9,8 @@ let fft;
 let mic;
 
 let w;
+console.log("in visualizer.js");
+
 
 // function preload() {
 //   soundFormats('mp3');
@@ -41,6 +43,7 @@ function keyTyped() {
 }
 
 function draw() {
+  console.log('in draw');
   colorMode(RGB);
   background(34, 34, 34);
   let spectrum = fft.analyze();
@@ -81,7 +84,5 @@ function draw() {
 
     rect(x, y, w, windowHeight - y/4);
     // rect(x, y, w, y)
-
-    fill(255, 255, 255);
   }
 }
