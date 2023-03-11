@@ -1,7 +1,5 @@
 // imports
-var SpotifyWebApi = require('spotify-web-api-node')
 const express = require("express");
-const jwt = require('jsonwebtoken');
 // const decodedToken = jwt.decode(access_token)
 const axios = require('axios');
 const request = require("request");
@@ -9,17 +7,21 @@ const { text } = require('express');
 const app = express();
 app.use(express.json());
 
-const port = null;
-if (window.location.href == "http://localhost:4000/callback") {
-  port = 4000;
-} else {
-  port = 443;
-}
+const port = 4000;
+
+// console.log("window.location.href", window.location.href);
+// if (window.location.href == "http://localhost:4000/callback") {
+//   port = 4000;
+// } else {
+//   port = 443;
+// }
 
 
 var CLIENT_ID = '9d94f606e5f14c6e9d25d87b2ed63cfb';
 var CLIENT_SECRET = '2598aa227a584e9e8ca50b0ff559d01c';
-var REDIRECT_URI = window.location.href + "callback";
+// var REDIRECT_URI = "http://localhost:4000/callback";
+let REDIRECT_URI = "";
+
 
 // Scope of the API calls
 const scope = "user-modify-playback-state streaming user-library-read playlist-read-private";
@@ -42,8 +44,13 @@ app.use("/index.html", express.static(__dirname + "/public/index.html"));
 
 // Request access token and refresh token from Spotify API
 app.get('/callback', (req, res) => {
-  var siteUrl = req.protocol + "://" + req.get('host');
-  console.log(siteUrl);
+  // Check the hostname and set REDIRECT_URL to the correct URL
+  const hostName = req.get('host');
+  if (hostName = "localhost:4000") {
+    REDIRECT_URI = "http://localhost:4000/callback";
+  } else {
+    REDIRECT_URI = "https://audreyqiu2.github.io/aud.iovisualizer/callback";
+  }
 
   const code = req.query.code;
   const authOptions = {
@@ -88,13 +95,15 @@ app.get('/get-me', (req, res) => {
     })
     .catch(error => {
       console.error(error);
-      res.type(text);
       res.status(500).send('Error getting user info');
     })
 });
 
 // Gets current user's top playlists
 app.get('/get-my-playlists', (req, res) => {
+
+  console.log("access_token", access_token);
+
   const authOptions = {
     url: BASE_URL + '/me/playlists?limit=10',
     headers: {

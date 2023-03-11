@@ -1,5 +1,5 @@
 body {
-  color: rgb(220, 220, 220);
+  color: rgb(150, 150, 150);
   background-color: rgb(34, 34, 34);
   margin: 0;
   max-width: 80vw;
@@ -11,18 +11,27 @@ body {
 
 .content {
   z-index: 1;
-  padding: 6vw;
+  padding: 4vw;
 }
 
 h1 {
-  color: rgb(220, 220, 220);
+  font-size: 1.5rem;
+  /* color: rgb(200, 200, 200); */
+}
+
+h2 {
+  font-size: 1rem;
+}
+
+p {
+  font-size: 0.8rem;
 }
 
 button {
   display: block;
   padding: 12px 24px;
-  border: solid 1px rgb(220, 220, 220);
-  color: rgb(220, 220, 220);
+  border: solid 1px rgb(150, 150, 150);
+  color: rgb(150, 150, 150);
   background-color: rgb(34, 34, 34);
 }
 
@@ -31,7 +40,8 @@ button:hover {
 }
 
 hr {
-  width: 24vw;
+  border-color: rgb(71, 71, 71);
+  width: 18vw;
   margin-left: 0px;
   margin-right: auto;
 }
@@ -42,6 +52,7 @@ ul {
 }
 
 li {
+  font-size: 0.8rem;
   color: rgba(168, 168, 168, 0.7);
 }
 
@@ -54,7 +65,7 @@ iframe {
   position: absolute;
   z-index: -1;
   width: 100vw;
-  height: 50vh;
+  height: 45vh;
 }
 
 .hidden {
@@ -65,11 +76,24 @@ iframe {
   display: flex;
   flex-direction: row;
   align-items: center;
+  width: 30vw;
+  margin-right: 0px;
 }
 
 #myPlaylistsHeading img {
-  width: 3rem;
-  height: 3rem;
+  width: 2rem;
+  height: 2rem;
   border-radius: 99px;
   margin-right: 1vw;
+}
+
+#playlists-container.hidden {
+  border: 0px;
+}
+
+#playlists-container {
+  width: 24vw;
+  padding: 2vh;
+  border: solid 1px rgb(71, 71, 71);
+  margin-top: 32vh;
 }

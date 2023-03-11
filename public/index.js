@@ -5,7 +5,10 @@ const port = 4000;
 // Developer codes
 var CLIENT_ID = '9d94f606e5f14c6e9d25d87b2ed63cfb'
 var CLIENT_SECRET = '2598aa227a584e9e8ca50b0ff559d01c';
-var REDIRECT_URI = window.location.href + "callback";
+// var REDIRECT_URI = window.location.href + "callback";
+// let REDIRECT_URI = "http://localhost:4000/callback";
+let REDIRECT_URI = "h";
+
 
 
 // Base URL for logging in and OAuth authentification
@@ -38,7 +41,9 @@ window.onSpotifyWebPlaybackSDKReady = () => {
 }
 
 function init() {
+  console.log("in init");
   console.log(window.location.href);
+  REDIRECT_URI = window.location.href + "callback"
   afterAuthentication();
 
   // Listen to button for logging in to Spotify
@@ -78,11 +83,13 @@ function afterAuthentication() {
 
   if (window.location.search.length > 0) {
     id("loginBtn").classList.add("hidden");
+    id("playlists-container").classList.remove("hidden");
     id("myPlaylistsHeading").classList.remove("hidden");
     makeRequestForUserInfo();
     makeRequestForPlaylists();
   } else {
     id("loginBtn").classList.remove("hidden");
+    id("playlists-container").classList.add("hidden");
     id("myPlaylistsHeading").classList.add("hidden");
   }
 
