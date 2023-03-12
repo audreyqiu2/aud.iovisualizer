@@ -7,7 +7,7 @@ const { text } = require('express');
 const app = express();
 app.use(express.json());
 
-const port = 4000;
+const port = 443;
 
 // console.log("window.location.href", window.location.href);
 // if (window.location.href == "http://localhost:4000/callback") {
@@ -74,7 +74,7 @@ app.get('/callback', (req, res) => {
     console.log('refresh token', refresh_token);
 
     res.append('Set-Cookie', 'access_token=' + access_token);
-    res.sendFile(__dirname + "/public/index.html");
+    res.sendFile(__dirname + "./index.html");
   });
 });
 
