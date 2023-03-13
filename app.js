@@ -38,9 +38,9 @@ let expires_at = null;
 
 // static files
 app.use(express.static("public"));
-app.use("/styles.css", express.static(__dirname + "/public/styles.css"));
-app.use("/index.js", express.static(__dirname + "/public/index.js"));
-app.use("/index.html", express.static(__dirname + "/public/index.html"));
+app.use("/styles.css", express.static(__dirname + "/styles.css"));
+app.use("/index.js", express.static(__dirname + "/index.js"));
+app.use("/index.html", express.static(__dirname + "/index.html"));
 
 // Request access token and refresh token from Spotify API
 app.get('/callback', (req, res) => {
