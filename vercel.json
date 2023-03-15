@@ -1,6 +1,5 @@
 {
   "redirects": [
-    { "source": "/get_me", "destination": "./public/index.html"},
-    {"source": "/callback", "destination": "test.html"}
+    { "source": "/get_me", "destination": "/index.html"},
   ]
 }
