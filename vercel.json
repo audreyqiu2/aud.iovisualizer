@@ -1,6 +1,10 @@
 {
   "redirects": [
     { "source": "/callback", "destination": "index.html"},
-    { "source": "/get_me", "destination": "index.html"},
+    { "source": "/get-me", "destination": "index.html"},
+    { "source": "/get-my-playlists", "destination": "index.html"},
+    { "source": "/playback/start", "destination": "index.html"},
+    { "source": "/get-playlist-info", "destination": "index.html"},
+    { "source": "/refresh_token", "destination": "index.html"}
   ]
 }
