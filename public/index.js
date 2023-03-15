@@ -186,7 +186,7 @@ function makeRequestForUserInfo() {
 
 function makeRequestRefreshToken() {
   fetch('/refresh_token')
-    .then(response => response.json())
+    .then(response => response.text())
     .then(data => {
       console.log(data);
       access_token = data.access_token;
