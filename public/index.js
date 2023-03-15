@@ -7,7 +7,7 @@ var CLIENT_ID = '9d94f606e5f14c6e9d25d87b2ed63cfb'
 var CLIENT_SECRET = '2598aa227a584e9e8ca50b0ff559d01c';
 // var REDIRECT_URI = window.location.href + "callback";
 // let REDIRECT_URI = "http://localhost:4000/callback";
-let REDIRECT_URI = "h";
+let REDIRECT_URI = "";
 
 
 
