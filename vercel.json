@@ -1,0 +1,5 @@
+{
+  "redirects": [
+    { "source": "/get_me", "destination": "/public/index.html"}
+  ]
+}
