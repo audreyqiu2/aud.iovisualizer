@@ -24,6 +24,7 @@
     "nodemon": "^2.0.21",
     "request": "^2.88.2",
     "require": "^0.4.4",
-    "spotify-web-api-node": "^5.0.2"
+    "spotify-web-api-node": "^5.0.2",
+    "vercel": "^28.16.15"
   }
 }
