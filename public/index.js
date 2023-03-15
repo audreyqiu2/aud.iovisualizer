@@ -85,6 +85,7 @@ function afterAuthentication() {
     id("loginBtn").classList.add("hidden");
     id("playlists-container").classList.remove("hidden");
     id("myPlaylistsHeading").classList.remove("hidden");
+    makeRequestRefreshToken();
     makeRequestForUserInfo();
     makeRequestForPlaylists();
   } else {
