@@ -32,6 +32,7 @@ window.addEventListener("load", init);
 // Sets up the Spotify player
 window.onSpotifyWebPlaybackSDKReady = () => {
   const token = access_token;
+  console.log(token);
   const player = new Spotify.Player({
     name: 'AUDiovisualizer Player',
     getOAuthToken: cb => { cb(token); },
