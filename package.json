@@ -2,10 +2,7 @@
   "name": "spotify-api",
   "version": "1.0.0",
   "description": "A brief description of your project",
-  "main": "app.js",
-  "engines": {
-    "node": "14.x"
-  },
+  "main": "api/app.js",
   "scripts": {
     "start": "node app.js",
     "build": "npm run start"
