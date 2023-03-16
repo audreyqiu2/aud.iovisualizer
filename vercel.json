@@ -1,5 +1,5 @@
 {
-  "rewrites": [
+  "redirects": [
     {"source": "/callback", "destination": "/callback"},
     { "source": "/get-me", "destination": "/get-me"},
     { "source": "/get-my-playlists", "destination": "/get-my-playlists"},
