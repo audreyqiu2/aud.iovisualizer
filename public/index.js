@@ -81,6 +81,7 @@ function generateRandomString(length) {
 function afterAuthentication() {
   // Retrieves access token as cookie
   access_token = document.cookie.split('=')[1];
+  console.log(access_token);
 
   if (window.location.search.length > 0) {
     id("loginBtn").classList.add("hidden");
