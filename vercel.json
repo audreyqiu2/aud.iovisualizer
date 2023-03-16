@@ -3,10 +3,11 @@
     {
       "source": "/callback",
       "destination": "index.html",
-      "headers": [
+      "has": [
         {
-        "key": "Set-Cookie",
-        "value": "*"
+          "type": "cookie",
+          "key": "access_token",
+          "value": "*"
         }
       ]
     }
