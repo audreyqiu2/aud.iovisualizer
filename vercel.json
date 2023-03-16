@@ -1,5 +1,14 @@
 {
   "redirects": [
-    {"source": "/callback", "destination": "index.html"}
+    {
+      "source": "/callback",
+      "destination": "index.html",
+      "headers": [
+        {
+        "key": "Set-Cookie",
+        "value": "*"
+        }
+      ]
+    }
   ]
 }
