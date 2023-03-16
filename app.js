@@ -46,7 +46,7 @@ app.use("/index.html", express.static(__dirname + "/public/index.html"));
 app.get('/callback', (req, res) => {
   // Check the hostname and set REDIRECT_URL to the correct URL
   const hostName = req.get('host');
-  if (hostName = "localhost:4000") {
+  if (hostName == "localhost:4000") {
     REDIRECT_URI = "http://localhost:4000/callback";
   } else {
     REDIRECT_URI = "https://audreyqiu2.github.io/aud.iovisualizer/callback";
@@ -107,6 +107,10 @@ app.get('/get-me', (req, res) => {
       res.status(500).send('Error getting user info');
     })
 });
+
+app.get('/TEST-ENDPOINT', (req, res) => {
+  console.log("TESTING");
+}) ;
 
 // Gets current user's top playlists
 app.get('/get-my-playlists', (req, res) => {
