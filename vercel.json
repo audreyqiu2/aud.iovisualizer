@@ -1,12 +1,15 @@
 {
   "version": 2,
+  "builds": [
+    {
+      "src": "./public/index.js",
+      "use": "@vercel/node"
+    }
+  ],
   "routes": [
     {
-      "src": "/api/.*",
-      "methods": ["GET", "POST", "PUT"],
-      "allowOrigins": "https://aud-iovisualizer.vercel.app/",
-      "allowHeaders": ["Content-Type", "Authorization"],
-      "allowCredentials": true
+      "src": "/(.*)",
+      "dest": "/"
     }
   ],
   "redirects": [
