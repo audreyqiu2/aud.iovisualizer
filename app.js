@@ -74,7 +74,7 @@ app.get('/callback', (req, res) => {
     console.log('refresh token', refresh_token);
 
     res.append('Set-Cookie', 'access_token=' + access_token);
-
+    res.cookie('access_token', access_token, { secure: true, sameSite: 'none' })
     // res.cookie('access_token', access_token);
     res.sendFile(__dirname + "/public/index.html");
   });
@@ -82,7 +82,8 @@ app.get('/callback', (req, res) => {
 
 app.get('/get-cookie', (req, res) => {
   res.append('Set-Cookie', 'access_token=' + access_token)
-  res.setHeader('Access-Control-Allow-Credentials', "true");
+  res.header('Access-Control-Allow-Credentials', "true");
+  // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   res.send(access_token);
 })
 
