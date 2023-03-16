@@ -90,6 +90,8 @@ function afterAuthentication() {
     id("loginBtn").classList.add("hidden");
     id("playlists-container").classList.remove("hidden");
     id("myPlaylistsHeading").classList.remove("hidden");
+    access_token = getCookie();
+    console.log(access_token);
     makeRequestRefreshToken();
     makeRequestForUserInfo();
     makeRequestForPlaylists();
