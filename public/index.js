@@ -121,6 +121,7 @@ function getCookie(name) {
     .then(cookieValue => {
       console.log(cookieValue);
     })
+    .catch(e => {console.error(e)});
 }
 
 // Gets devices to play and sets the des
