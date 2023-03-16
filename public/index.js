@@ -81,9 +81,9 @@ function generateRandomString(length) {
 // and show the playlists as a list to choose from
 function afterAuthentication() {
   // Retrieves access token as cookie
-  // access_token = getCookie("access_token");
+  access_token = getCookie("access_token");
   // console.log(access_token);
-  access_token = document.cookie.split('=')[1];
+  // access_token = document.cookie.split('=')[1];
   console.log(access_token);
 
   if (window.location.search.length > 0) {
