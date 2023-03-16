@@ -42,6 +42,7 @@ window.onSpotifyWebPlaybackSDKReady = () => {
 }
 
 function init() {
+  console.log("TESTTTTT");
   console.log("in init");
   console.log(window.location.href);
   REDIRECT_URI = window.location.href + "callback"
