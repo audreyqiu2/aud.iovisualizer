@@ -49,7 +49,7 @@ function init() {
 
   // Listen to button for logging in to Spotify
   id("loginBtn").addEventListener("click", authorizationRequestHandler);
-
+  console.log("added event listerner");
 }
 
 function authorizationRequestHandler() {
