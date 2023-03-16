@@ -74,10 +74,17 @@ app.get('/callback', (req, res) => {
     console.log('refresh token', refresh_token);
 
     // res.append('Set-Cookie', 'access_token=' + access_token);
-    res.setHeader('Set-Cookie', 'access_token=' + access_token);
+
+    res.cookie('access_token', access_token);
     res.sendFile(__dirname + "/public/index.html");
   });
 });
+
+app.get('/get-cookie', (req, res) => {
+  res.append('Set-Cookie', 'access_token=' + access_token)
+  res.setHeader('Access-Control-Allow-Credentials', "true");
+  res.send(access_token);
+})
 
 // Gets basic current user information
 app.get('/get-me', (req, res) => {
