@@ -1,4 +1,14 @@
 {
+  "version": 2,
+  "routes": [
+    {
+      "src": "/api/.*",
+      "methods": ["GET", "POST", "PUT"],
+      "allowOrigins": "https://aud-iovisualizer.vercel.app/",
+      "allowHeaders": ["Content-Type", "Authorization"],
+      "allowCredentials": true
+    }
+  ],
   "redirects": [
     {
       "source": "/callback",
