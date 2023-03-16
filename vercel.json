@@ -1,8 +1,32 @@
 {
+  "version": 2,
   "redirects": [
     {
       "source": "/callback",
       "destination": "index.html"
+    },
+    {
+      "source": "/get-cookie",
+      "destination": "api/get-cookie"
+    },
+    {
+      "source": "/get-me",
+      "destination": "api/get-me"
+    },
+    {
+      "source": "/get-my-playlists",
+      "destination": "api/get-my-playlists"
+    },{
+      "source": "/get-devices",
+      "destination": "api/get-devices"
+    },
+    {
+      "source": "/get-playlist-info",
+      "destination": "api/get-playlist-info"
+    },
+    {
+      "source": "/refresh_token",
+      "destination": "api/refresh_token"
     }
   ]
 }
