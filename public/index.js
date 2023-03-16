@@ -81,7 +81,9 @@ function generateRandomString(length) {
 // and show the playlists as a list to choose from
 function afterAuthentication() {
   // Retrieves access token as cookie
-  access_token = document.cookie.split('=')[1];
+  access_token = getCookie("access_token");
+  console.log(access_token);
+  // access_token = document.cookie.split('=')[1];
   // console.log(access_token.length);
 
   if (window.location.search.length > 0) {
@@ -107,6 +109,13 @@ function afterAuthentication() {
       iframe.style.height = event.data.height + 'px';
     }
   });
+}
+
+function getCookie(name) {
+  const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+  if (match) {
+    return match[2];
+  }
 }
 
 // Gets devices to play and sets the des
