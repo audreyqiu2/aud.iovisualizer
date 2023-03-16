@@ -4,8 +4,5 @@
       "source": "/callback",
       "destination": "index.html"
     }
-  ],
-  "functions": {
-    "cookie": "edge"
-  }
+  ]
 }
