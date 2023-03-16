@@ -2,13 +2,6 @@
   "redirects": [
     {
       "source": "/callback",
-      "has": [
-        {
-          "type": "cookie",
-          "key": "access_token",
-          "value": "*"
-        }
-      ],
       "destination": "index.html"
     }
   ]
