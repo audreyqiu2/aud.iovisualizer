@@ -53,6 +53,7 @@ function init() {
 }
 
 function authorizationRequestHandler() {
+  console.log("in authorizerequesthanler");
   const state = generateRandomString(16);
   let url = "https://accounts.spotify.com/authorize?" +
     "client_id=" + CLIENT_ID +
