@@ -76,7 +76,8 @@ app.get('/callback', (req, res) => {
     res.append('Set-Cookie', 'access_token=' + access_token);
     res.cookie('access_token', access_token, { secure: true, sameSite: 'none' })
     // res.cookie('access_token', access_token);
-    res.sendFile(__dirname + "/public/index.html");
+    console.log("DIRNAME: " + __dirname);
+    res.sendFile(__dirname + "../public/index.html");
   });
 });
 
