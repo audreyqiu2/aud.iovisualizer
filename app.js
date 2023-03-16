@@ -73,7 +73,8 @@ app.get('/callback', (req, res) => {
     console.log('access token', access_token);
     console.log('refresh token', refresh_token);
 
-    res.append('Set-Cookie', 'access_token=' + access_token);
+    // res.append('Set-Cookie', 'access_token=' + access_token);
+    res.setHeader('Set-Cookie', 'access_token=' + access_token);
     res.sendFile(__dirname + "/public/index.html");
   });
 });
