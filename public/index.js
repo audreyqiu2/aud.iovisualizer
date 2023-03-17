@@ -1,13 +1,92 @@
 console.log("in index.js");
 
+let fft;
+let mic;
+let w;
+
+function setup() {
+  console.log(mic);
+  createCanvas(windowWidth, windowHeight);
+
+  window.parent.postMessage({type: 'resize', width: width, height: height}, '*');
+
+  mic = new p5.AudioIn();
+  mic.start();
+  fft = new p5.FFT(0.9, 512);
+  fft.setInput(mic);
+
+  angleMode(DEGREES);
+
+  w = windowWidth / 512;
+}
+
+// On window resize, update the canvas size
+function windowResized () {
+  resizeCanvas(windowWidth, windowHeight);
+  w = windowWidth / 512;
+}
+
+function keyTyped() {
+}
+
+function draw() {
+
+  console.log('in draw');
+  fft.setInput(mic);
+
+  colorMode(RGB);
+  background(34, 34, 34);
+  let spectrum = fft.analyze();
+  let waves = fft.waveform();
+  noStroke();
+  for (let i = 0; i < spectrum.length; i++) {
+    let amp = spectrum[i];
+    let energy = fft.getEnergy(i);
+    let newWaveForm = map(waves[i], -1, 1, 0, 255);
+    let y = map(amp, 0, spectrum.length, windowHeight, 0);
+    let x = map(i, 0, spectrum.length, i, windowWidth * w);
+
+    let ampMeasure = map(amp, 0, spectrum.length, 0, 255);
+
+    ////////////////////////////
+    // DIFFERENT COLOR THEMES //
+    ////////////////////////////
+
+    // LESS STROBE-Y
+    // More blue-centric color theme
+    // fill(255 - energy, newWaveForm, energy);
+
+    // More purple-centric color theme
+    // fill(newWaveForm, 255 - energy, energy);
+
+    // MORE STROBE-Y
+    // More strobe-y purple-centric color theme
+    // fill(newWaveForm, 255 - energy, ampMeasure);
+
+    // More strobe-y green-centric color theme
+    // fill(ampMeasure, newWaveForm, 255 - energy);
+
+    // !!! Strobe-y orange-green theme !!!
+    fill(newWaveForm, ampMeasure, 255 - energy);
+
+    // Strobe-y light blue-purple theme
+    // fill(newWaveForm, ampMeasure, energy);
+
+    rect(x, y, w, windowHeight - y/4);
+    // rect(x, y, w, y)
+  }
+}
+
+////////////////////////////////////////////////////////////
+
 const port = 4000;
 
 // Developer codes
 var CLIENT_ID = '9d94f606e5f14c6e9d25d87b2ed63cfb'
 var CLIENT_SECRET = '2598aa227a584e9e8ca50b0ff559d01c';
 // var REDIRECT_URI = window.location.href + "callback";
-// let REDIRECT_URI = "http://localhost:4000/callback";
-let REDIRECT_URI = "";
+let REDIRECT_URI = "http://localhost:4000/callback";
+// let REDIRECT_URI = "h";
 
 
 
@@ -32,7 +111,6 @@ window.addEventListener("load", init);
 // Sets up the Spotify player
 window.onSpotifyWebPlaybackSDKReady = () => {
   const token = access_token;
-  console.log(token);
   const player = new Spotify.Player({
     name: 'AUDiovisualizer Player',
     getOAuthToken: cb => { cb(token); },
@@ -42,7 +120,6 @@ window.onSpotifyWebPlaybackSDKReady = () => {
 }
 
 function init() {
-  console.log("TESTTTTT");
   console.log("in init");
   console.log(window.location.href);
   REDIRECT_URI = window.location.href + "callback"
@@ -50,11 +127,10 @@ function init() {
 
   // Listen to button for logging in to Spotify
   id("loginBtn").addEventListener("click", authorizationRequestHandler);
-  console.log("added event listerner");
+
 }
 
 function authorizationRequestHandler() {
-  console.log("in authorizerequesthanler");
   const state = generateRandomString(16);
   let url = "https://accounts.spotify.com/authorize?" +
     "client_id=" + CLIENT_ID +
@@ -82,18 +158,12 @@ function generateRandomString(length) {
 // and show the playlists as a list to choose from
 function afterAuthentication() {
   // Retrieves access token as cookie
-  access_token = getCookie("access_token");
-  // console.log(access_token);
-  // access_token = document.cookie.split('=')[1];
-  console.log(access_token);
+  access_token = document.cookie.split('=')[1];
 
   if (window.location.search.length > 0) {
     id("loginBtn").classList.add("hidden");
     id("playlists-container").classList.remove("hidden");
     id("myPlaylistsHeading").classList.remove("hidden");
-    access_token = getCookie();
-    console.log(access_token);
-    makeRequestRefreshToken();
     makeRequestForUserInfo();
     makeRequestForPlaylists();
   } else {
@@ -112,17 +182,6 @@ function afterAuthentication() {
       iframe.style.height = event.data.height + 'px';
     }
   });
-}
-
-function getCookie(name) {
-  fetch('/get-cookie', {
-    credentials: 'include'
-  })
-    .then(response => response.text())
-    .then(cookieValue => {
-      console.log(cookieValue);
-    })
-    .catch(e => {console.error(e)});
 }
 
 // Gets devices to play and sets the des
@@ -205,7 +264,7 @@ function makeRequestForUserInfo() {
 
 function makeRequestRefreshToken() {
   fetch('/refresh_token')
-    .then(response => response.text())
+    .then(response => response.json())
     .then(data => {
       console.log(data);
       access_token = data.access_token;

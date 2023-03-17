@@ -3,11 +3,32 @@
   height: 100%;
 }
 
+h1 {
+  font-size: 1.5rem;
+}
+
 body {
-  /* color: rgb(220, 220, 220); */
-  /* background-color: rgb(161, 87, 87); */
-  margin: 0px;
-  /* height: 100%;
-  width: 100%; */
-  /* width: 100vw; */
+  color: rgb(150, 150, 150);
+  background-color: rgb(34, 34, 34);
+  margin: 0;
+  max-width: 80vw;
+  font-family: "Helvetica", "Arial", sans-serif;
+  line-height: 1.5;
+}
+
+button {
+  display: block;
+  padding: 12px 24px;
+  border: solid 1px rgb(150, 150, 150);
+  color: rgb(150, 150, 150);
+  background-color: rgb(34, 34, 34);
+}
+
+.content {
+  z-index: 1;
+  padding: 4vw;
+}
+
+button:hover {
+  cursor: pointer;;
 }

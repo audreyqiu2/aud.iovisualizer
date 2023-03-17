@@ -19,8 +19,8 @@ const port = 4000;
 
 var CLIENT_ID = '9d94f606e5f14c6e9d25d87b2ed63cfb';
 var CLIENT_SECRET = '2598aa227a584e9e8ca50b0ff559d01c';
-// var REDIRECT_URI = "http://localhost:4000/callback";
-let REDIRECT_URI = "";
+var REDIRECT_URI = "http://localhost:4000/callback";
+// let REDIRECT_URI = "";
 
 
 // Scope of the API calls
@@ -45,12 +45,12 @@ app.use("/index.html", express.static(__dirname + "/public/index.html"));
 // Request access token and refresh token from Spotify API
 app.get('/callback', (req, res) => {
   // Check the hostname and set REDIRECT_URL to the correct URL
-  const hostName = req.get('host');
-  if (hostName == "localhost:4000") {
-    REDIRECT_URI = "http://localhost:4000/callback";
-  } else {
-    REDIRECT_URI = "https://audreyqiu2.github.io/aud.iovisualizer/callback";
-  }
+  // const hostName = req.get('host');
+  // if (hostName = "localhost:4000") {
+  //   REDIRECT_URI = "http://localhost:4000/callback";
+  // } else {
+  //   REDIRECT_URI = "https://audreyqiu2.github.io/aud.iovisualizer/callback";
+  // }
 
   const code = req.query.code;
   const authOptions = {
@@ -74,19 +74,9 @@ app.get('/callback', (req, res) => {
     console.log('refresh token', refresh_token);
 
     res.append('Set-Cookie', 'access_token=' + access_token);
-    res.cookie('access_token', access_token, { secure: true, sameSite: 'none' })
-    // res.cookie('access_token', access_token);
-    console.log("DIRNAME: " + __dirname);
-    res.sendFile(__dirname + "../public/index.html");
+    res.sendFile(__dirname + "/public/index.html");
   });
 });
-
-app.get('/get-cookie', (req, res) => {
-  res.append('Set-Cookie', 'access_token=' + access_token)
-  res.header('Access-Control-Allow-Credentials', "true");
-  // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.send(access_token);
-})
 
 // Gets basic current user information
 app.get('/get-me', (req, res) => {
@@ -109,10 +99,6 @@ app.get('/get-me', (req, res) => {
     })
 });
 
-app.get('/TEST-ENDPOINT', (req, res) => {
-  console.log("TESTING");
-}) ;
-
 // Gets current user's top playlists
 app.get('/get-my-playlists', (req, res) => {
 
@@ -133,7 +119,6 @@ app.get('/get-my-playlists', (req, res) => {
     })
     .catch(error => {
       console.error(error);
-      res.type(text);
       res.status(500).send('Error getting users playlists');
     })
 });
@@ -226,7 +211,8 @@ app.get('/refresh_token', function(req, res) {
         'access_token': access_token
       });
     } else {
-      res.status(500).send("Error getting refresh token");
+      console.error("Error getting refresh token: ", res.statusCode, body);
+      res.status(res.statusCode).send(body);
     }
   });
 })

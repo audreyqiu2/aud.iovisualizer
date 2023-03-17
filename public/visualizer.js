@@ -20,16 +20,18 @@ console.log("in visualizer.js");
 // }
 
 function setup() {
+  console.log(mic);
   createCanvas(windowWidth, windowHeight);
 
   window.parent.postMessage({type: 'resize', width: width, height: height}, '*');
 
   mic = new p5.AudioIn();
   mic.start();
-
-  angleMode(DEGREES);
   fft = new p5.FFT(0.9, 512);
   fft.setInput(mic);
+
+  angleMode(DEGREES);
+
   w = windowWidth / 512;
 }
 
@@ -43,7 +45,10 @@ function keyTyped() {
 }
 
 function draw() {
+
   console.log('in draw');
+  fft.setInput(mic);
+
   colorMode(RGB);
   background(34, 34, 34);
   let spectrum = fft.analyze();
